@@ -3,147 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Zeyun (Hughes) Zhao — Medical AI researcher working across neuroimaging, precision brain health, and agentic systems.">
-  <meta name="theme-color" content="#f4f0e8">
+  <meta name="description" content="Zeyun (Hughes) Zhao — Medical AI researcher working across medical imaging, foundation models, and agentic systems.">
+  <meta name="theme-color" content="#f3efe7">
   <title>Zeyun Zhao — Medical AI Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260721-fancy2">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Zeyun Zhao, home">
-      <span class="brand-mark">ZZ</span>
-      <span>Zeyun Zhao</span>
+      <span class="brand-mark" aria-hidden="true">ZZ</span>
+      <span class="brand-name">Zeyun Zhao</span>
     </a>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span><b>Menu</b>
+    </button>
+
     <nav id="primary-nav" aria-label="Primary navigation">
+      <a href="#home">About</a>
+      <a href="#news">Latest News</a>
       <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#experience">Experience</a>
-      <a href="#about">About</a>
     </nav>
+
     <a class="header-link" href="Resume__1_page.pdf" target="_blank" rel="noreferrer">CV <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
+    <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Medical AI · Neuroimaging · Agentic Systems</p>
-        <h1>Building intelligent systems for precision brain health.</h1>
-        <p class="hero-lede">I develop trustworthy AI that connects multimodal clinical evidence, neuroimaging, and actionable scientific hypotheses.</p>
+        <p class="eyebrow"><span></span> Medical AI · Brain Health · Agentic Systems</p>
+        <h1 id="hero-title">Science with<br><em>intelligence.</em></h1>
+        <p class="hero-lede">Building advanced AI systems for medical imaging, multimodal health data, and precision brain health.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#research">Explore research <span aria-hidden="true">→</span></a>
-          <a class="button button-text" href="#publications">View publications <span aria-hidden="true">→</span></a>
+          <a class="button button-quiet" href="#home">About me <span aria-hidden="true">↘</span></a>
         </div>
+        <p class="hero-note">Biomedical Engineering · University of Florida</p>
       </div>
 
-      <div class="hero-visual reveal" aria-label="Portrait of Zeyun Zhao with an abstract scientific data composition">
-        <div class="coral-orbit" aria-hidden="true"></div>
-        <div class="visual-index visual-index-one"><b>01</b><span>Multimodal fusion</span></div>
-        <div class="visual-index visual-index-two"><b>02</b><span>Network modeling</span></div>
-        <div class="visual-index visual-index-three"><b>03</b><span>Clinical impact</span></div>
+      <div class="hero-visual reveal" aria-label="Portrait of Zeyun Zhao in an abstract scientific composition">
+        <div class="visual-grid" aria-hidden="true"></div>
+        <div class="orb orb-coral" aria-hidden="true"></div>
+        <div class="orb orb-blue" aria-hidden="true"></div>
+        <div class="data-label data-label-a" aria-hidden="true"><b>01</b><span>Medical<br>imaging</span></div>
+        <div class="data-label data-label-b" aria-hidden="true"><b>02</b><span>Foundation<br>models</span></div>
+        <div class="data-label data-label-c" aria-hidden="true"><b>03</b><span>AI<br>agents</span></div>
         <div class="portrait-frame">
           <img src="3e91e811ccc99faad125b6e5134ec9a9.jpg" alt="Zeyun Hughes Zhao">
         </div>
-        <div class="visual-caption"><span>Researcher / Engineer</span><strong>AI for brain health</strong></div>
+        <div class="visual-stamp" aria-hidden="true"><span>Research</span><strong>→ 2026</strong></div>
       </div>
     </section>
 
-    <section class="proof-strip" aria-label="Research highlights">
-      <div class="proof-item reveal"><span class="proof-icon">▤</span><strong>12+ manuscripts</strong><small>Research output</small></div>
-      <div class="proof-item reveal"><span class="proof-icon coral">◎</span><strong>6 first-author</strong><small>Lead contributions</small></div>
-      <div class="proof-item reveal"><span class="proof-icon">♕</span><strong>BMES 3MT · 3rd place</strong><small>Research communication</small></div>
-    </section>
+    <div class="signal-band" aria-label="Research themes">
+      <span>Medical Image Analysis</span><i></i>
+      <span>Foundation Models</span><i></i>
+      <span>AI for Healthcare</span><i></i>
+      <span>Vision–Language Models</span>
+    </div>
 
-    <section class="section-shell" id="research">
-      <div class="section-heading reveal">
-        <div><p class="section-kicker">Selected research / 03</p><h2>From scientific signal to meaningful action.</h2></div>
-        <p>My work spans patient-level neuroimaging, label-efficient medical image analysis, and evidence-grounded AI systems.</p>
+    <section class="portfolio-shell" aria-label="Portfolio content">
+      <div class="section-intro reveal">
+        <p class="section-label">Profile / Research Archive</p>
+        <p class="section-intro-copy">AI research shaped by clinical questions, rigorous evidence, and a drive to translate ideas into real-world impact.</p>
       </div>
 
-      <div class="research-grid">
-        <article class="research-card reveal">
-          <div class="card-topline"><span>Agentic AI</span><span>01</span></div>
-          <h3>Brain AI Scientist</h3>
-          <p>A traceable Evidence-Based AI Medicine workflow connecting clinical context, rs-fMRI, scientific evidence, and testable intervention hypotheses.</p>
-          <div class="tag-row"><span>rs-fMRI</span><span>Agentic RAG</span><span>Evidence appraisal</span></div>
-          <div class="card-graphic" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        </article>
-        <article class="research-card coral-card reveal">
-          <div class="card-topline"><span>Neuroimaging</span><span>02</span></div>
-          <h3>HeadSeg–MoE</h3>
-          <p>A mixture-of-experts framework for robust whole-head MRI segmentation in older adults, supporting individualized neuromodulation modeling.</p>
-          <div class="tag-row"><span>3D MRI</span><span>Mixture of experts</span><span>tDCS</span></div>
-          <div class="card-graphic" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        </article>
-        <article class="research-card reveal">
-          <div class="card-topline"><span>Few-shot learning</span><span>03</span></div>
-          <h3>Few-Shot Medical Imaging</h3>
-          <p>Prototype and mask-matching methods that learn reliable anatomical representations from sparse labels and self-supervised structure.</p>
-          <div class="tag-row"><span>CPNet</span><span>Mask matching</span><span>MRI segmentation</span></div>
-          <div class="card-graphic" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        </article>
-      </div>
-    </section>
+      <div class="content-grid">
+        <div id="sidebar-slot" class="sidebar-slot" aria-label="Profile and contact information">
+          <p class="loading-state">Loading profile…</p>
+        </div>
 
-    <section class="news-section section-shell" id="news">
-      <div class="section-kicker-row reveal"><p class="section-kicker">Latest signals / 2026</p><span></span></div>
-      <div class="news-grid">
-        <article class="news-feature reveal"><time datetime="2026-06">Jun 2026</time><h3>REVEAL++ accepted by MICCAI 2026</h3><p>Differentiable phenotypic grouping for vision–language retinal modeling of Alzheimer’s disease risk.</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13015869/" target="_blank" rel="noreferrer">Read update ↗</a></article>
-        <article class="news-feature reveal"><time datetime="2026-03">Mar 2026</time><h3>Cerebra is live</h3><p>A multidisciplinary AI board for multimodal dementia characterization and risk assessment.</p><a href="https://cerebra-health.com/" target="_blank" rel="noreferrer">Explore system ↗</a></article>
-        <article class="news-feature reveal"><time datetime="2026-03">Mar 2026</time><h3>tDCS × machine learning review published</h3><p>A synthesis of recent methods, challenges, and opportunities in adaptive neuromodulation.</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13015869/" target="_blank" rel="noreferrer">Read paper ↗</a></article>
-      </div>
-    </section>
-
-    <section class="publications section-shell" id="publications">
-      <div class="section-heading reveal">
-        <div><p class="section-kicker">Selected publications</p><h2>Ideas, methods, and evidence.</h2></div>
-        <a class="scholar-link" href="https://scholar.google.com/citations?user=ulSyc1AAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
-      </div>
-      <div class="publication-list">
-        <a class="publication-row reveal" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13015869/" target="_blank" rel="noreferrer"><span class="publication-number">01</span><span class="publication-year">2026<small>TAI</small></span><span class="publication-copy"><strong>Recent Advancements of Transcranial Direct Current Stimulation and Machine Learning</strong><small>Junfu Cheng, Tara Sahni, Zeyun Zhao, et al.</small></span><span aria-hidden="true">↗</span></a>
-        <a class="publication-row reveal" href="https://ieeexplore.ieee.org/document/10687373" target="_blank" rel="noreferrer"><span class="publication-number">02</span><span class="publication-year">2024<small>ICME</small></span><span class="publication-copy"><strong>Mask Matching Network for Self-supervised Few-shot Medical Image Segmentation</strong><small>Zeyun Zhao, Rong Wang, Jianzhe Gao, Zhiming Luo, Shaozi Li</small></span><span aria-hidden="true">↗</span></a>
-        <a class="publication-row reveal" href="https://link.springer.com/chapter/10.1007/978-981-97-8499-8_10" target="_blank" rel="noreferrer"><span class="publication-number">03</span><span class="publication-year">2024<small>PRCV</small></span><span class="publication-copy"><strong>CPNet: Cross Prototype Network for Few-Shot Medical Image Segmentation</strong><small>Zeyun Zhao, Jianzhe Gao, Zhiming Luo, Shaozi Li</small></span><span aria-hidden="true">↗</span></a>
-        <a class="publication-row reveal" href="https://ieeexplore.ieee.org/document/10925125" target="_blank" rel="noreferrer"><span class="publication-number">04</span><span class="publication-year">2024<small>UIC</small></span><span class="publication-copy"><strong>Mask Refinement with Reverse Attention for Few-shot Medical Image Segmentation</strong><small>Rong Wang, Zhiming Luo, Zeyun Zhao, Yuliang Tang, Shaozi Li</small></span><span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-
-    <section class="profile-grid" id="experience">
-      <div class="experience-panel section-shell reveal">
-        <p class="section-kicker">Experience</p>
-        <h2>Across research, engineering, and translation.</h2>
-        <div class="timeline">
-          <div><span>Fall 2026 →</span><h3>Incoming Ph.D. Researcher</h3><p>Vanderbilt University · Biomedical Engineering</p></div>
-          <div><span>2024 — 2026</span><h3>Graduate Research Assistant</h3><p>University of Florida · SMILE Lab</p></div>
-          <div><span>2026</span><h3>AI Research Intern</h3><p>Mayo Clinic · AI &amp; Informatics</p></div>
-          <div><span>Earlier</span><h3>M.Sc. in Artificial Intelligence</h3><p>Xiamen University · Medical image analysis</p></div>
+        <div class="main-column">
+          <div id="home-slot" class="content-section"><p class="loading-state">Loading biography…</p></div>
+          <div id="news-slot" class="content-section"><p class="loading-state">Loading news…</p></div>
+          <div id="research-slot" class="content-section"><p class="loading-state">Loading research…</p></div>
         </div>
       </div>
-      <div class="about-panel section-shell reveal" id="about">
-        <p class="section-kicker">About</p>
-        <p class="about-statement">I work where <em>scientific evidence</em>, medical images, and intelligent systems meet.</p>
-        <p class="about-copy">I am a Biomedical Engineering researcher advised by Dr. Ruogu Fang. My work focuses on making medical AI useful at the individual-patient level—from label-efficient segmentation to neuroimaging biomarkers and agentic systems that expose their evidence and reasoning.</p>
-        <p class="about-copy">Outside the lab, I enjoy hiking, scuba diving, skiing, photography, and exploring new recipes.</p>
-        <blockquote>“The goal is not only to predict, but to make the next scientific and clinical question clearer.”</blockquote>
-      </div>
     </section>
 
-    <section class="contact-band" id="contact">
-      <div class="reveal"><p class="section-kicker">Let’s connect</p><h2>Interested in medical AI, neuroimaging, or evidence-based agents?</h2></div>
-      <div class="contact-links reveal">
-        <a href="mailto:zeyun.zhao@ufl.edu">Email <span aria-hidden="true">↗</span></a>
-        <a href="https://www.linkedin.com/in/zeyun-hughes-zhao-4113b6328/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-        <a href="https://github.com/zeyunZhao" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-        <a href="https://scholar.google.com/citations?user=ulSyc1AAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar <span aria-hidden="true">↗</span></a>
+    <section class="contact-band" aria-labelledby="contact-title">
+      <div>
+        <p class="section-label">Collaboration / Contact</p>
+        <h2 id="contact-title">Let’s make medical AI<br><em>matter.</em></h2>
       </div>
+      <a class="contact-email" href="mailto:zeyun.zhao@ufl.edu">
+        <span>Start a conversation</span>
+        <strong>zeyun.zhao@ufl.edu</strong>
+        <i aria-hidden="true">↗</i>
+      </a>
     </section>
   </main>
 
-  <footer><span>© <span id="year">2026</span> Zeyun Zhao</span><span>Medical AI · Neuroimaging · Agentic Systems</span><a href="#top">Back to top ↑</a></footer>
-  <script src="assets/js/main.js"></script>
+  <footer class="site-footer">
+    <div id="footer-slot">© <span id="year"></span> Zeyun(Hughes) Zhao. All Rights Reserved.</div>
+    <p>Medical AI · Brain Health · Agentic Systems</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260721-fancy2"></script>
 </body>
 </html>
