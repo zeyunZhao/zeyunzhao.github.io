@@ -1,52 +1,56 @@
-async function loadFragment(selector, path) {
-  const target = document.querySelector(selector);
-  if (!target) return;
-  const response = await fetch(path);
-  if (!response.ok) {
-    target.innerHTML = `<section><p>Failed to load ${path}</p></section>`;
-    return;
-  }
-  target.innerHTML = await response.text();
+const header = document.querySelector('.site-header');
+const menuButton = document.querySelector('.menu-button');
+const nav = document.querySelector('#primary-nav');
+const navLinks = [...document.querySelectorAll('#primary-nav a')];
+
+menuButton?.addEventListener('click', () => {
+  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', String(!isOpen));
+  header?.classList.toggle('menu-open', !isOpen);
+});
+
+navLinks.forEach((link) => link.addEventListener('click', () => {
+  menuButton?.setAttribute('aria-expanded', 'false');
+  header?.classList.remove('menu-open');
+}));
+
+const sections = navLinks
+  .map((link) => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+  });
+}, { rootMargin: '-32% 0px -62%', threshold: 0.01 });
+
+sections.forEach((section) => navObserver.observe(section));
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('is-visible');
+    observer.unobserve(entry.target);
+  });
+}, { rootMargin: '0px 0px -8%', threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+const year = document.querySelector('#year');
+if (year) year.textContent = String(new Date().getFullYear());
+
+const visual = document.querySelector('.hero-visual');
+if (visual && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  visual.addEventListener('pointermove', (event) => {
+    const bounds = visual.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 10;
+    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 10;
+    visual.style.setProperty('--pointer-x', `${x}px`);
+    visual.style.setProperty('--pointer-y', `${y}px`);
+  });
+  visual.addEventListener('pointerleave', () => {
+    visual.style.setProperty('--pointer-x', '0px');
+    visual.style.setProperty('--pointer-y', '0px');
+  });
 }
-
-function initFooterYear() {
-  const yearNode = document.getElementById("year");
-  if (yearNode) yearNode.textContent = new Date().getFullYear();
-}
-
-function initNavObserver() {
-  const navLinks = Array.from(document.querySelectorAll("nav a"));
-  const sections = navLinks
-    .map(a => document.querySelector(a.getAttribute("href")))
-    .filter(Boolean);
-
-  const setActive = (id) => {
-    navLinks.forEach(a => {
-      const match = a.getAttribute("href") === "#" + id;
-      a.classList.toggle("active", match);
-    });
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) setActive(entry.target.id);
-    });
-  }, { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 });
-
-  sections.forEach(sec => observer.observe(sec));
-}
-
-async function initPage() {
-  await Promise.all([
-    loadFragment("#sidebar-slot", "components/sidebar.html"),
-    loadFragment("#home-slot", "components/home.html"),
-    loadFragment("#news-slot", "components/news.html"),
-    loadFragment("#research-slot", "components/research.html"),
-    loadFragment("#footer-slot", "components/footer.html")
-  ]);
-
-  initFooterYear();
-  initNavObserver();
-}
-
-initPage();
