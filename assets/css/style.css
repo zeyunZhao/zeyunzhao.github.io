@@ -373,12 +373,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--coral); outline
   padding: 23px 22px 23px 136px;
   border-bottom: 1px solid var(--rule-light);
   color: var(--muted);
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.72;
   transition: padding 180ms ease, color 180ms ease, background 180ms ease;
 }
 .news li:hover { padding-right: 14px; padding-left: 146px; color: var(--ink); background: var(--paper); }
-.news time { position: absolute; top: 27px; left: 8px; color: var(--blue); font-size: 24px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.news time { position: absolute; top: 27px; left: 8px; color: var(--blue); font-size: 20px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .news li a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(22,73,255,.35); text-underline-offset: 3px; }
 .news li a:hover { color: var(--blue); text-decoration-color: var(--blue); }
 
