@@ -1,56 +1,120 @@
-const header = document.querySelector('.site-header');
-const menuButton = document.querySelector('.menu-button');
-const nav = document.querySelector('#primary-nav');
-const navLinks = [...document.querySelectorAll('#primary-nav a')];
+const fragmentMap = {
+  'sidebar-slot': 'components/sidebar.html',
+  'home-slot': 'components/home.html',
+  'news-slot': 'components/news.html',
+  'research-slot': 'components/research.html',
+  'footer-slot': 'components/footer.html'
+};
 
-menuButton?.addEventListener('click', () => {
-  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!isOpen));
-  header?.classList.toggle('menu-open', !isOpen);
-});
+async function loadFragment(targetId, source) {
+  const target = document.getElementById(targetId);
+  if (!target) return;
 
-navLinks.forEach((link) => link.addEventListener('click', () => {
-  menuButton?.setAttribute('aria-expanded', 'false');
-  header?.classList.remove('menu-open');
-}));
+  try {
+    const response = await fetch(source, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    target.innerHTML = await response.text();
+  } catch (error) {
+    console.error(`Unable to load ${source}:`, error);
+    target.innerHTML = '<p class="loading-state error-state">This section could not be loaded. Please refresh the page.</p>';
+  }
+}
 
-const sections = navLinks
-  .map((link) => document.querySelector(link.getAttribute('href')))
-  .filter(Boolean);
+function initYear() {
+  const year = document.getElementById('year');
+  if (year) year.textContent = String(new Date().getFullYear());
+}
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+function initMenu() {
+  const header = document.querySelector('.site-header');
+  const button = document.querySelector('.menu-button');
+  const nav = document.getElementById('primary-nav');
+  if (!header || !button || !nav) return;
+
+  button.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!open));
+    header.classList.toggle('menu-open', !open);
   });
-}, { rootMargin: '-32% 0px -62%', threshold: 0.01 });
 
-sections.forEach((section) => navObserver.observe(section));
+  nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    button.setAttribute('aria-expanded', 'false');
+    header.classList.remove('menu-open');
+  }));
+}
 
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('is-visible');
-    observer.unobserve(entry.target);
-  });
-}, { rootMargin: '0px 0px -8%', threshold: 0.08 });
+function initActiveNavigation() {
+  const links = [...document.querySelectorAll('#primary-nav a')];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
 
-document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+  if (!('IntersectionObserver' in window)) return;
 
-const year = document.querySelector('#year');
-if (year) year.textContent = String(new Date().getFullYear());
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: '-30% 0px -62%', threshold: 0.01 });
 
-const visual = document.querySelector('.hero-visual');
-if (visual && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  sections.forEach((section) => observer.observe(section));
+}
+
+function initReveal() {
+  const elements = document.querySelectorAll(
+    '.reveal, .sidebar-slot, .content-section > section, .news li, .area, .pub'
+  );
+
+  elements.forEach((element) => element.classList.add('reveal-item'));
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((element) => element.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, revealObserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -7%', threshold: 0.06 });
+
+  elements.forEach((element) => observer.observe(element));
+}
+
+function initHeroMotion() {
+  const visual = document.querySelector('.hero-visual');
+  if (!visual || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   visual.addEventListener('pointermove', (event) => {
-    const bounds = visual.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 10;
-    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 10;
-    visual.style.setProperty('--pointer-x', `${x}px`);
-    visual.style.setProperty('--pointer-y', `${y}px`);
+    const rect = visual.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 12;
+    visual.style.setProperty('--motion-x', `${x}px`);
+    visual.style.setProperty('--motion-y', `${y}px`);
   });
+
   visual.addEventListener('pointerleave', () => {
-    visual.style.setProperty('--pointer-x', '0px');
-    visual.style.setProperty('--pointer-y', '0px');
+    visual.style.setProperty('--motion-x', '0px');
+    visual.style.setProperty('--motion-y', '0px');
   });
 }
+
+async function init() {
+  initMenu();
+  initHeroMotion();
+
+  await Promise.all(
+    Object.entries(fragmentMap).map(([targetId, source]) => loadFragment(targetId, source))
+  );
+
+  initYear();
+  initActiveNavigation();
+  initReveal();
+}
+
+init();
