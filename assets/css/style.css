@@ -1,3 +1,22 @@
-#home > h1 {
+#home > h1,
+.brand-name,
+.sidebar-slot .name,
+#footer-slot {
   white-space: nowrap;
+}
+
+#home > h1 {
+  font-size: 1.6rem;
+}
+
+.brand-name {
+  font-size: 13px;
+}
+
+.sidebar-slot .name {
+  font-size: 15px;
+}
+
+#footer-slot {
+  font-size: 12px;
 }
